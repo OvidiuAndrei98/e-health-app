@@ -28,4 +28,27 @@ public class Nurse {
     private int departmentId;
     private int roomId;
 
+
+    public Nurse(String name, int age, String sex, String phoneNumber, LocalDate startDate,
+                 int departmentId, int roomId) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.phoneNumber = phoneNumber;
+        this.startDate = startDate;
+        this.departmentId = departmentId;
+        this.roomId = roomId;
+    }
+
+    public Nurse(String name, int age, String sex, String phoneNumber, LocalDate startDate, LocalDate endDate,
+                 int departmentId, int roomId) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.phoneNumber = phoneNumber;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.departmentId = departmentId;
+        this.roomId = roomId;
+    }
 }

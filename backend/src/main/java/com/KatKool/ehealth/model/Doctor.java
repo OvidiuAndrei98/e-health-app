@@ -26,4 +26,24 @@ public class Doctor{
     private LocalDate startDate;
     private LocalDate endDate;
     private int departmentId;
+
+    public Doctor(String name, int age, String sex, String phoneNumber, LocalDate startDate, int departmentId) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.phoneNumber = phoneNumber;
+        this.startDate = startDate;
+        this.departmentId = departmentId;
+    }
+
+    public Doctor(String name, int age, String sex, String phoneNumber, LocalDate startDate,
+                  LocalDate endDate, int departmentId) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.phoneNumber = phoneNumber;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.departmentId = departmentId;
+    }
 }

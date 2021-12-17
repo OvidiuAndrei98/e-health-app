@@ -33,4 +33,39 @@ public class Patient {
     private int assignedDoctorId;
     private int assignedNurseId;
 
+    public Patient(String name, int age, String sex, String phoneNumber, String diagnosis, String notes,
+                   int bedId, int roomId, int departmentId, LocalDate admissionDate,
+                   int assignedDoctorId,  int assignedNurseId) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.phoneNumber = phoneNumber;
+        this.diagnosis = diagnosis;
+        this.notes = notes;
+        this.bedId = bedId;
+        this.roomId = roomId;
+        this.departmentId = departmentId;
+        this.admissionDate = admissionDate;
+        this.assignedDoctorId = assignedDoctorId;
+        this.assignedNurseId = assignedNurseId;
+
+    }
+
+    public Patient(String name, int age, String sex, String phoneNumber, String diagnosis, String notes,
+                   int bedId, int roomId, int departmentId, LocalDate admissionDate, LocalDate dischargeDate,
+                   int assignedDoctorId, int assignedNurseId) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.phoneNumber = phoneNumber;
+        this.diagnosis = diagnosis;
+        this.notes = notes;
+        this.bedId = bedId;
+        this.roomId = roomId;
+        this.departmentId = departmentId;
+        this.admissionDate = admissionDate;
+        this.dischargeDate = dischargeDate;
+        this.assignedDoctorId = assignedDoctorId;
+        this.assignedNurseId = assignedNurseId;
+    }
 }
