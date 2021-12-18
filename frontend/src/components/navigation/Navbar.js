@@ -44,7 +44,7 @@ const Navbar = () => {
                 {AuthService.getCurrentUser() ? (
                 <ul>
                             <li className={splitLocation[1] === "departments" ? "active-link" : ""}><NavLink to="/departments">Departments</NavLink></li>,
-                            <li><NavLink to="/my-jobs">Dashboard</NavLink></li>,
+                            <li><NavLink to="/dashboard">Dashboard</NavLink></li>,
                             <li><NavLink to="/user/messages">Messages</NavLink></li>,
                             <li><img src={ProfilePhoto} className="profile-photo" onClick={handlePopup} />
                             {popUp ? (

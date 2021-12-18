@@ -21,6 +21,10 @@ class DoctorService {
       return axios.post(`${DOCTOR_API_URL}/doctor-for-patient/${id}`, {headers: AuthHeader()});
   }
 
+  getDoctor(id){
+    return axios.get(`${DOCTOR_API_URL}/doctor/${id}`, {headers: AuthHeader()});
+  }
+
 
 }
 
