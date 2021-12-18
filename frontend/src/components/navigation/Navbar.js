@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import ProfilePhoto from '../../assets/ProfilePhoto.png'
 import Settings from '../../assets/Settings-popUp.png'
 import { useLocation } from 'react-router-dom';
+import AuthService from '../../service/AuthService';
 
 
 const Navbar = () => {
@@ -33,14 +34,14 @@ const Navbar = () => {
 
     const logout = () => {
         window.location.href = '/';
-        // AuthService.logout();
+        AuthService.logout();
     }
 
     return (
         <div className="nav-container">
             <div className="nav">
                 <div className="logo"><NavLink to="/">EasyMed</NavLink></div>
-                {true ? (
+                {AuthService.getCurrentUser() ? (
                 <ul>
                             <li className={splitLocation[1] === "departments" ? "active-link" : ""}><NavLink to="/departments">Departments</NavLink></li>,
                             <li><NavLink to="/my-jobs">Dashboard</NavLink></li>,
@@ -55,9 +56,9 @@ const Navbar = () => {
                 </ul>
                 ) : (<ul>
                     <li>How it works</li>
-                    <li><NavLink to="/jobs">Doctors</NavLink></li>
-                    <li><NavLink to="/login">Hospitals</NavLink></li>
-                    <li><NavLink to="/register">Contact</NavLink></li>
+                    <li><NavLink to="/register-doctors">Doctors</NavLink></li>
+                    <li><NavLink to="/register-hospital">Hospitals</NavLink></li>
+                    <li><NavLink to="/login">Login</NavLink></li>
                 </ul>)}
                 
             </div>

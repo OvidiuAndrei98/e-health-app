@@ -17,14 +17,15 @@ const [patientNurse, setPatientNurse] = React.useState(null);
 const { register, handleSubmit, formState: {errors} } = useForm();
 
 useEffect(() => {
-    DoctorService.getDoctorForPatient(bed.patient).then(res => {
+    DoctorService.getDoctorForPatient(bed.patient.doctorId).then(res => {
         setPatientDoctor(res.data);
     });
-    NurseService.getNurseForPatient(bed.patient).then(res => {
+    NurseService.getNurseForPatient(bed.patient.nurseId).then(res => {
         setPatientNurse(res.data);
     });
 
 } , []);
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -64,6 +65,8 @@ const searchNurses= () => {
     });
 }
 
+console.log(bed.patient);
+
     return (
         <>
         <div className="modal-box d-flex row justify-between" >
@@ -73,7 +76,7 @@ const searchNurses= () => {
         </div>
         <form noValidate onSubmit={
                         handleSubmit((data) => {
-                            PatientService.savePatient(data, patientDoctor, patientNurse);
+                            PatientService.savePatient(data,bed.patient.id, patientDoctor, patientNurse);
                             // closeModal(false)
                             }
                         )
@@ -93,6 +96,18 @@ const searchNurses= () => {
         <div className="modal-box">
         <TextField className={classes.root} id="diagnosis" defaultValue={bed.patient.diagnosis} label="Diagnosis" variant="outlined" size="small" sx={{ minWidth: "100%" }}
             {...register("diagnosis", {required: true})}/>
+        </div>
+        <div className="modal-box">
+        <TextField type="date" className={classes.root} id="admissionDate" defaultValue={`${bed.patient.admissionDate[0]}-${bed.patient.admissionDate[1]}-${bed.patient.admissionDate[2]}`}  variant="outlined" size="small" sx={{ minWidth: "100%" }}
+            {...register("admissionDate", {required: true})}/>
+        </div>
+        <div className="modal-box">
+        <TextField className={classes.root} id="phoneNumber" defaultValue={bed.patient.phoneNumber} label="Phone" variant="outlined" size="small" sx={{ minWidth: "100%" }}
+            {...register("phoneNumber", {required: true})}/>
+        </div>
+        <div className="modal-box">
+        <TextField className={classes.root} id="notes" defaultValue={bed.patient.notes} label="Notes" variant="outlined" size="small" sx={{ minWidth: "100%" }}
+            {...register("notes", {required: true})}/>
         </div>
         <div className="modal-box">
         <Autocomplete

@@ -11,6 +11,7 @@ import RoomService from '../../service/RoomService';
 import BedService from '../../service/BedService';
 import DoctorService from '../../service/DoctorService';
 import NurseService from '../../service/NurseService';
+import PatientService from '../../service/PatientService';
 
 const Departments = () => {
     const [departments, setDepartments] = useState([]);
@@ -20,6 +21,7 @@ const Departments = () => {
     const [departmentId, setDepartmentId] = useState(null);
     const [searchDoctor, setSearchDoctor] = useState([]);
     const [searchNurse, setSearchNurse] = useState([]);
+    const [searchPatient, setSearchPatient] = useState([]);
 
 useEffect(() => {
     DepartmentService.getAllDepartments().then(res => {
@@ -40,6 +42,12 @@ const handleDepartments = (event) => {
         RoomService.getAllRoomsForDepartment(event.target.value).then(res => {
             setRooms(res.data);
             setDepartmentId(event.target.value);
+            NurseService.getAllNursesForDept(event.target.value).then(res => {
+                setSearchNurse(res.data);
+            });
+            DoctorService.getAllDoctorsForDept(event.target.value).then(res => {
+                setSearchDoctor(res.data);
+            });
         });
     }
     setRooms([]);
@@ -63,7 +71,6 @@ const useStyles = makeStyles((theme) => ({
   const searchDoctors= (event) => {
       DoctorService.searchDoctor(event.target.value).then(res => {
             setSearchDoctor(res.data);
-            console.log(searchDoctor);
         });
     }
 
@@ -72,8 +79,23 @@ const useStyles = makeStyles((theme) => ({
       NurseService.searchNursesForDept(departmentId,event.target.value).then(res => {
             setSearchNurse(res.data);
         });
+        }
     }
+
+    const patientsForDoc = (id) => {
+        PatientService.getAllForDept(id).then(res => {
+            setSearchPatient(res.data);
+        });
     }
+
+//     const searchPatients= (event) => {
+//         if(event.target.value != null) {
+//     NurseService.searchNursesForDept(departmentId,event.target.value).then(res => {
+//           setSearchNurse(res.data);
+//       });
+//       }
+//   }
+
 
     return (
         <>
@@ -121,22 +143,10 @@ const useStyles = makeStyles((theme) => ({
                         </div>
                         <div className="result-container">
                         {searchDoctor.map(doctor => (
-                            <div className="doctor-card" key={doctor.id}>
+                            <div className="doctor-card" key={doctor.id}onClick={() => patientsForDoc(doctor.id)} >
                                 <p>{doctor.name}</p>
                             </div>
                         ))}
-                        <div className="doctor-card" >
-                                <p>adasd</p>
-                            </div>
-                            <div className="doctor-card" >
-                                <p>adasda</p>
-                            </div>
-                            <div className="doctor-card" >
-                                <p>asdasd</p>
-                            </div>
-                            <div className="doctor-card" >
-                                <p>asdsada</p>
-                            </div>
                         </div>
                     </div>
                     <div className="f-3">   
@@ -156,9 +166,9 @@ const useStyles = makeStyles((theme) => ({
                             <TextField className={classes.root} id="patients" label="Search Patients" variant="outlined" size="small" sx={{ minWidth: "80%" }}/>
                         </div>
                         <div className="result-container">
-                            {searchNurse.map(nurse => (
-                                <div className="nurse-card" key={nurse.id}>
-                                    <p>{nurse.name}</p>
+                            {searchPatient.map(patient => (
+                                <div className="nurse-card" key={patient.id}>
+                                    <p>{patient.name}</p>
                                 </div>
                             ))}
                         </div>
