@@ -7,11 +7,13 @@ import RoomService from '../../service/RoomService';
 import Button from '@mui/material/Button';
 import BedService from '../../service/BedService';
 import BedImage from '../../assets/Bed.png'    
+import Bed from '../departments/Bed';
 
 
-const AddBed = ({departmentId}) => {
+const AddPatient = ({departmentId}) => {
     const [roomId, setRoomId] = React.useState(null);
     const [rooms, setRooms] = React.useState([]);
+    const [beds, setBeds] = React.useState([]);
 
     useEffect(() => {
         RoomService.getAllRoomsForDepartment(departmentId).then(res => {
@@ -35,13 +37,16 @@ const AddBed = ({departmentId}) => {
 
       const handleSelect = (event) => {
             setRoomId(event.target.value);
+            BedService.getAllBedsForRoom(roomId).then(res => {
+                setBeds(res.data);
+            });
       }
 
-      const addBed = () => {
-        BedService.addBed(roomId).then(res => {
-            console.log(res);
-        });
-      }
+    //   const AddPatient = () => {
+    //     BedService.addBed(roomId).then(res => {
+    //         console.log(res);
+    //     });
+    //   }
 
     return (
         <>
@@ -68,11 +73,19 @@ const AddBed = ({departmentId}) => {
                     </TextField>
                 </FormControl>
             </div>
-            <Button  style={{background:"#F27457"}} variant="contained" sx={{borderRadius:"5px", padding:"30px 5px", height:"0", marginTop:"20px", float:"right", marginBottom:"10px"}} onClick = {addBed}>Add Bed</Button>        
+                <div className="d-flex">
+                {beds.map(bed => (
+                    <div className="d-flex collumn aling-center">
+                    <img src={BedImage} />
+                    <p>{bed.id}</p>
+                    </div>
+                ))}
+            </div>
+            <Button  style={{background:"#F27457"}} variant="contained" sx={{borderRadius:"5px", padding:"30px 5px", height:"0", marginTop:"20px", float:"right", marginBottom:"10px"}}>Add Bed</Button>        
         </div>
             
         </>
     );
 };
 
-export default AddBed;
+export default AddPatient;

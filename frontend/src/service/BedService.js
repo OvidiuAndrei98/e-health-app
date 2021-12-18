@@ -9,6 +9,10 @@ class BedService {
     return axios.get(`${BED_API_URL}/beds/${roomId}`, {headers: AuthHeader()});
   };
 
+  addBed(roomId) {
+    return axios.put(`${BED_API_URL}/add/${roomId}`, {headers: AuthHeader()});
+  };
+
 
 }
 
