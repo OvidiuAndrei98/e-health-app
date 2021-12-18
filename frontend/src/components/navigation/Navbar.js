@@ -49,7 +49,7 @@ const Navbar = () => {
                             <li><img src={ProfilePhoto} className="profile-photo" onClick={handlePopup} />
                             {popUp ? (
                         <ul className="profile-dropdown">   
-                            <li><div className="profile-pop-up"><img src={ProfilePhoto} className="profile-photo-pop-up" />Andrei Penica</div></li>
+                            <li><a href='/profile' style={{textDecoration: "none"}} className="profile-pop-up"><img src={ProfilePhoto} className="profile-photo-pop-up" />Andrei Penica</a></li>
                             <li><div className="profile-pop-up" ><img src={Settings}/>Settings</div></li>    
                             <li><div className="profile-pop-up" onClick={logout}><img src={Settings}/>Logout</div></li>
                         </ul>) : ("")}</li>
