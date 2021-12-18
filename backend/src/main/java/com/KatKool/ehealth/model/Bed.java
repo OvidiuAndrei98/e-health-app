@@ -1,13 +1,11 @@
 package com.KatKool.ehealth.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -17,6 +15,19 @@ public class Bed {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private int departmentId;
-    private int roomId;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private Room room;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private Patient patient;
+
+    public Bed(Room room) {
+        this.room = room;
+    }
+
+    public Bed(Room room, Patient patient) {
+        this.room = room;
+        this.patient = patient;
+    }
 }

@@ -1,6 +1,7 @@
 package com.KatKool.ehealth.controller;
 
 import com.KatKool.ehealth.model.Doctor;
+import com.KatKool.ehealth.model.Patient;
 import com.KatKool.ehealth.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,32 +15,26 @@ import java.util.List;
 @RequestMapping("/doctor")
 public class DoctorController {
 
-    private DoctorService doctorService;
+    private final DoctorService doctorService;
 
     @Autowired
     public DoctorController(DoctorService doctorService) {
         this.doctorService = doctorService;
     }
 
-    @PostMapping("/add-doctor")
-    public ResponseEntity<String> addDoctorToDepartment(@RequestBody Doctor doctor) {
-        doctorService.addDoctorToDepartment(doctor);
-        return ResponseEntity.ok("Doctor added to department");
+    @GetMapping("/doctors")
+    public ResponseEntity<List<Doctor>> getAllDoctors(){
+        return ResponseEntity.ok(doctorService.getAllDoctors());
     }
 
-    @GetMapping("/doctor-info/{id}")
-    public ResponseEntity<Doctor> getDoctorInfo(@PathVariable String id) {
-        return ResponseEntity.ok(this.doctorService.getDoctorById(Long.parseLong(id)));
+    @GetMapping("/search/{search}")
+    public ResponseEntity<List<Doctor>> searchDoctor(@PathVariable String search){
+        return ResponseEntity.ok(doctorService.searchDoctor(search));
     }
 
-    @GetMapping("/department/{id}/all")
-    public ResponseEntity<List<Doctor>> getAllDoctorsByDepartmentId(@PathVariable String id) {
-        return ResponseEntity.ok(this.doctorService.getAllDoctorsByDepartmentId(id));
-    }
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateDoctorDetails(@RequestBody Doctor doctor, @PathVariable Long id) {
-        this.doctorService.update(doctor, id);
-        return ResponseEntity.ok("doctor info has been updated for id " + id);
+    @PostMapping("/doctor-for-patient")
+    public ResponseEntity<Doctor> getDoctorForPatient(@RequestBody Patient patient){
+        System.out.println("am intrat");
+        return ResponseEntity.ok(doctorService.getDoctorByPatient(patient));
     }
 }

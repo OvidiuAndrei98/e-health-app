@@ -1,21 +1,21 @@
 package com.KatKool.ehealth.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
 @Data
-@NoArgsConstructor
+@Entity
 @AllArgsConstructor
-public class Doctor{
+@NoArgsConstructor
+@JsonIgnoreProperties
+public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -25,25 +25,29 @@ public class Doctor{
     private String phoneNumber;
     private LocalDate startDate;
     private LocalDate endDate;
-    private int departmentId;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private Department department;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private List<Patient> patients;
 
-    public Doctor(String name, int age, String sex, String phoneNumber, LocalDate startDate, int departmentId) {
+
+    public Doctor(String name, int age, String sex, String phoneNumber, LocalDate startDate, Department department, List<Patient> patients) {
         this.name = name;
         this.age = age;
         this.sex = sex;
         this.phoneNumber = phoneNumber;
         this.startDate = startDate;
-        this.departmentId = departmentId;
+        this.department = department;
+        this.patients = patients;
     }
 
-    public Doctor(String name, int age, String sex, String phoneNumber, LocalDate startDate,
-                  LocalDate endDate, int departmentId) {
+    public Doctor(String name, int age, String sex, String phoneNumber, LocalDate startDate, Department department) {
         this.name = name;
         this.age = age;
         this.sex = sex;
         this.phoneNumber = phoneNumber;
         this.startDate = startDate;
-        this.endDate = endDate;
-        this.departmentId = departmentId;
+        this.department = department;
     }
 }

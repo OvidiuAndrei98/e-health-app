@@ -1,0 +1,282 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+  
+body {
+min-height: 90vh;
+background: #D9D9D9
+}
+
+
+.logo {
+color: #FFF;
+letter-spacing: 2px;
+font-size: large;
+text-transform: uppercase;
+}
+
+.logo > a {
+color: #FFF;
+text-decoration: none;
+}
+
+.nav-container {
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+max-width: 100%;
+min-height: 7vh;
+background-color: #041159;
+}
+
+.nav {
+    position: absolute;
+    align-items: center;
+    width: 65%;
+    display: flex;
+    padding: 20px 50px;
+    justify-content: space-between;
+    
+}
+    
+.nav > ul {
+    align-items: center;
+    display: flex;
+    list-style: none;
+}
+
+.nav > ul > li {
+    padding-left: 25px;
+    color: #FFF;
+}
+
+.nav > ul > li > a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.nav > ul > li > a:hover {
+    color: #F27457;
+}
+
+.active-link a {
+    color: #F27457!important;
+}
+
+.profile-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  .profile-photo-pop-up{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: middle;
+    margin-right: 10px;
+  
+  }
+  
+  .profile-pop-up{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .profile-dropdown {
+    color: #000;
+    background-color: white;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    /* padding: 20px; */
+    margin-top: 10px;
+    transform: translateX(-148px);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    width: 200px;
+    z-index: 999;
+    border-radius: 5px;
+  }
+  
+  .profile-dropdown li {
+    padding: 10px;
+    list-style: none;
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+  
+  .profile-dropdown li:hover {
+    background-color: rgba(0, 0, 0, 0.068);
+  }
+
+  .active-link a {
+    color: #F27457!important;
+  }
+
+  .d-flex {
+    display: flex;
+  }
+
+  .row {
+      flex-direction: row;
+  }
+
+  .collumn {
+    flex-direction: column;
+  }
+
+  .aling-center {
+      align-items: center;
+  }
+
+  .justify-center {
+      justify-content: center;
+  }
+
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .border {
+    border: 1px solid #000;
+  }
+
+  .b-left {
+    border-left: 1px solid #000;
+  }
+
+  .b-right {
+    border-right: 1px solid #000;
+  }
+
+  .justify-between {
+    justify-content: space-between;
+  }
+
+  .section-container {
+      height: 93vh;
+      padding: 30px 0;
+  }
+
+  .f-1 {
+      flex: 1;
+  }
+
+  .f-2 {
+      flex: 2;
+  }
+
+  .f-3 {
+      flex: 3;
+  }
+
+  .filter-container {
+      width: 60%;
+      margin: 0 auto;
+  }
+  
+  .room-card {
+      padding: 40px;
+      margin: 10px 5px
+  }
+
+  .room-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+    cursor: pointer;
+    background-color: #798BF2;
+    color: white;
+}
+
+.rooms-container {
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+.rooms-container::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.bed {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.bed  p {
+display: inline-block;
+margin: 5px 0;
+}
+
+.bed  img {
+    width: 140px;
+    }
+
+.wrap { 
+    flex-wrap: wrap;
+}
+.beds-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.modal-box {
+    margin-bottom: 20px;
+}
+
+.delete-btn {
+    color: #F27457;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.doctor-card {
+    padding: 15px;
+    margin: 10px 5px
+}
+
+.doctor-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+  cursor: pointer;
+  background-color: #798BF2;
+  color: white;
+}
+
+.nurse-card {
+    padding: 15px;
+    margin: 10px 5px
+}
+
+.nurse-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+  cursor: pointer;
+  background-color: #798BF2;
+  color: white;
+}
+
+.result-container {
+    padding-top: 5.5px;
+    height: 25vh;
+    overflow-y: scroll;
+}
+
+.result-container::-webkit-scrollbar {
+    width: 0.5em;
+}

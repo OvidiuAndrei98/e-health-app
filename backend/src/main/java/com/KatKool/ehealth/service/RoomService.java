@@ -5,16 +5,18 @@ import com.KatKool.ehealth.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoomService {
-    private RoomRepository roomRepository;
+    private RoomRepository repository;
 
     @Autowired
-    public RoomService(RoomRepository roomRepository) {
-        this.roomRepository = roomRepository;
+    public RoomService(RoomRepository repository) {
+        this.repository = repository;
     }
 
-    public void addRoom(Room room) {
-        this.roomRepository.save(room);
+    public List<Room> getAllRoomsForDepartmenr(Long id) {
+        return repository.findAllByDepartmentId(id);
     }
 }

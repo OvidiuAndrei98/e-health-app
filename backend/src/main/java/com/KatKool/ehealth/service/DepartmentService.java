@@ -5,6 +5,8 @@ import com.KatKool.ehealth.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DepartmentService {
     private DepartmentRepository departmentRepository;
@@ -14,7 +16,7 @@ public class DepartmentService {
         this.departmentRepository = departmentRepository;
     }
 
-    public void addDepartment(Department department) {
-        this.departmentRepository.save(department);
+    public List<Department> getAllDepartments(){
+        return departmentRepository.findAll();
     }
 }
