@@ -44,6 +44,10 @@ public class DoctorService {
         doctorRepository.save(doctor);
     }
 
+    public Doctor getDoctor(Long id) {
+        return doctorRepository.getById(id);
+    }
+
 //    public void saveDoctor(Doctor doctor) {
 //        doctorRepository.save(doctor);
 //    }
