@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Navbar from '../navigation/Navbar';
+import Wallpaper from '../../assets/homepageWallpaper.png'
+
 
 const HomePage = () => {
     return (
         <>
             <Navbar />
-            adsad
+            <img src={Wallpaper} style={{width: "100%"}}/>
         </>
     );
 };
