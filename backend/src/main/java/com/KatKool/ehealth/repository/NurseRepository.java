@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface NurseRepository extends JpaRepository<Nurse, Long> {
     List<Nurse> findNurseByDepartmentIdAndNameContaining(Long id, String search);
-    Nurse getNurseByPatients(Patient patient);
+    List<Nurse> findAllByDepartmentId(Long id);
 }

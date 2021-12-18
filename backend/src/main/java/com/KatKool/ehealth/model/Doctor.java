@@ -9,16 +9,19 @@ import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String username;
+    private String password;
     private String name;
     private int age;
     private String sex;
@@ -28,26 +31,19 @@ public class Doctor {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Department department;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    private List<Patient> patients;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<UserRole> roles;
 
 
-    public Doctor(String name, int age, String sex, String phoneNumber, LocalDate startDate, Department department, List<Patient> patients) {
+    public Doctor(String username, String password, String name, int age, String sex, String phoneNumber, LocalDate startDate, Department department, Set<UserRole> roles) {
+        this.username = username;
+        this.password = password;
         this.name = name;
         this.age = age;
         this.sex = sex;
         this.phoneNumber = phoneNumber;
         this.startDate = startDate;
         this.department = department;
-        this.patients = patients;
-    }
-
-    public Doctor(String name, int age, String sex, String phoneNumber, LocalDate startDate, Department department) {
-        this.name = name;
-        this.age = age;
-        this.sex = sex;
-        this.phoneNumber = phoneNumber;
-        this.startDate = startDate;
-        this.department = department;
+        this.roles = roles;
     }
 }

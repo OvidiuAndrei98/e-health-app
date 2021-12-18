@@ -27,14 +27,18 @@ public class DoctorController {
         return ResponseEntity.ok(doctorService.getAllDoctors());
     }
 
+    @GetMapping("/doctors/{id}")
+    public ResponseEntity<List<Doctor>> getAllDoctorsForDept(@PathVariable Long id){
+        return ResponseEntity.ok(doctorService.getAllDoctorsForDept(id));
+    }
+
     @GetMapping("/search/{search}")
     public ResponseEntity<List<Doctor>> searchDoctor(@PathVariable String search){
         return ResponseEntity.ok(doctorService.searchDoctor(search));
     }
 
-    @PostMapping("/doctor-for-patient")
-    public ResponseEntity<Doctor> getDoctorForPatient(@RequestBody Patient patient){
-        System.out.println("am intrat");
-        return ResponseEntity.ok(doctorService.getDoctorByPatient(patient));
+    @PostMapping("/doctor-for-patient/{id}")
+    public ResponseEntity<Doctor> getDoctorForPatient(@PathVariable Long id){
+        return ResponseEntity.ok(doctorService.getDoctorByPatient(id));
     }
 }

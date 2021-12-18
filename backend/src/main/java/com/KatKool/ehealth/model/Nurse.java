@@ -26,16 +26,16 @@ public class Nurse {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Department department;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    private List<Patient> patients;
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+//    private List<Patient> patients;
 
-    public Nurse(String name, int age, String sex, String phoneNumber, LocalDate startDate, Department department, List<Patient> patients) {
+
+    public Nurse(String name, int age, String sex, String phoneNumber, LocalDate startDate, Department department) {
         this.name = name;
         this.age = age;
         this.sex = sex;
         this.phoneNumber = phoneNumber;
         this.startDate = startDate;
         this.department = department;
-        this.patients = patients;
     }
 }

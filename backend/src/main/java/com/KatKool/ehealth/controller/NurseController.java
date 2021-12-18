@@ -33,10 +33,14 @@ public class NurseController {
     public ResponseEntity<List<Nurse>> getAllNurses() {
         return ResponseEntity.ok(nurseService.getAllNurses());
     }
+    @GetMapping("/nurses/{id}")
+    public ResponseEntity<List<Nurse>> getAllNursesForDept(@PathVariable Long id) {
+        return ResponseEntity.ok(nurseService.getAllNursesForDept(id));
+    }
 
-    @PostMapping("/nurse-for-patient")
-    public ResponseEntity<Nurse> getNurseByPatient(@RequestBody Patient patient){
-        return ResponseEntity.ok(nurseService.getNurseByPatient(patient));
+    @PostMapping("/nurse-for-patient/{id}")
+    public ResponseEntity<Nurse> getNurseByPatient(@PathVariable Long id){
+        return ResponseEntity.ok(nurseService.getNurseByPatient(id));
     }
 
 }

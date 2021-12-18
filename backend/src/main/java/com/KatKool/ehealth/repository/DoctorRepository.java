@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
-    Doctor getDoctorByPatients(Patient patient);
     List<Doctor> findDoctorByNameContainingIgnoreCase(String search);
+    List<Doctor> findAllByDepartmentId(Long id);
+    boolean existsByUsername(String username);
+    Doctor findByUsername(String username);
 }

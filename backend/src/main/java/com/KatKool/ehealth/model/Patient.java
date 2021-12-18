@@ -25,6 +25,8 @@ public class Patient {
     private String notes;
     private LocalDate admissionDate;
     private LocalDate dischargeDate;
+    private Long doctorId;
+    private Long nurseId;
 //    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    private Doctor doctor;
 //    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

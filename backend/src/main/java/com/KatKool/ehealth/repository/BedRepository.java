@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface BedRepository extends JpaRepository<Bed, Long> {
     List<Bed> findAllByRoomId(Long id);
+    Bed findByPatientId(Long id);
 }

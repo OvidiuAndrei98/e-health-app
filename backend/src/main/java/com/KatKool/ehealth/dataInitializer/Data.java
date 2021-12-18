@@ -4,10 +4,12 @@ import com.KatKool.ehealth.model.*;
 import com.KatKool.ehealth.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class Data implements CommandLineRunner {
@@ -17,6 +19,7 @@ public class Data implements CommandLineRunner {
     private final NurseRepository nurseRepository;
     private final PatientRepository patientRepository;
     private final RoomRepository roomRepository;
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
     public Data(BedRepository bedRepository, DepartmentRepository departmentRepository, DoctorRepository doctorRepository, NurseRepository nurseRepository, PatientRepository patientRepository, RoomRepository roomRepository) {
@@ -83,12 +86,12 @@ public class Data implements CommandLineRunner {
         bedRepository.saveAll(List.of(b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22,b23));
 
 
-        Doctor doctor1 = new Doctor("Doctor", 30,"M", "12345", LocalDate.now(),department,List.of(p1));
-        Doctor d2 = new Doctor("MEDIC", 34,"F", "12345", LocalDate.now(),department);
+        Doctor doctor1 = new Doctor("userDoctor",passwordEncoder.encode("123456"),"Doctor", 30,"M", "12345", LocalDate.now(),department, Set.of(UserRole.ROLE_DOCTOR));
+        Doctor d2 = new Doctor("userDoctor2",passwordEncoder.encode("123456"),"MEDIC", 34,"F", "12345", LocalDate.now(),department, Set.of(UserRole.ROLE_DOCTOR));
 
         doctorRepository.saveAll(List.of(doctor1,d2));
 
-        Nurse n1 = new Nurse("Nurse", 30,"F", "12345", LocalDate.now(),department,List.of(p1,p2));
+        Nurse n1 = new Nurse("Nurse", 30,"F", "12345", LocalDate.now(),department);
         nurseRepository.save(n1);
 
 

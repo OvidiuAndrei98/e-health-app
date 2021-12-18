@@ -20,12 +20,31 @@ public class DoctorService {
     public List<Doctor> getAllDoctors() {
         return doctorRepository.findAll();
     }
+    public List<Doctor> getAllDoctorsForDept(Long id) {
+        return doctorRepository.findAllByDepartmentId(id);
+    }
 
     public List<Doctor> searchDoctor(String name) {
         return doctorRepository.findDoctorByNameContainingIgnoreCase(name);
     }
 
-    public Doctor getDoctorByPatient(Patient patient) {
-        return doctorRepository.getDoctorByPatients(patient);
+    public Doctor getDoctorByPatient(Long id) {
+        return doctorRepository.getById(id);
     }
+
+    public boolean existByUsername(String username) {
+        return doctorRepository.existsByUsername(username);
+    }
+
+    public Doctor findByUsername(String username) {
+        return doctorRepository.findByUsername(username);
+    }
+
+    public void save(Doctor doctor) {
+        doctorRepository.save(doctor);
+    }
+
+//    public void saveDoctor(Doctor doctor) {
+//        doctorRepository.save(doctor);
+//    }
 }

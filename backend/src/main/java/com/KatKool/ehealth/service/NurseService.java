@@ -25,9 +25,12 @@ public class NurseService {
     public List<Nurse> getAllNurses() {
         return nurseRepository.findAll();
     }
+    public List<Nurse> getAllNursesForDept(Long id) {
+        return nurseRepository.findAllByDepartmentId(id);
+    }
 
-    public Nurse getNurseByPatient(Patient patient) {
-        return nurseRepository.getNurseByPatients(patient);
+    public Nurse getNurseByPatient(Long id) {
+        return nurseRepository.getById(id);
     }
 
 }
