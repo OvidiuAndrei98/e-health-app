@@ -7,13 +7,27 @@ import RoomService from '../../service/RoomService';
 import Button from '@mui/material/Button';
 import BedService from '../../service/BedService';
 import BedImage from '../../assets/Bed.png'    
+import Patient from '../../assets/Fever.png'   
 import Bed from '../departments/Bed';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import AddPatientModal from './AddPatientModal';
 
 
 const AddPatient = ({departmentId}) => {
     const [roomId, setRoomId] = React.useState(null);
     const [rooms, setRooms] = React.useState([]);
     const [beds, setBeds] = React.useState([]);
+    const [open, setOpen] = React.useState(false);
+    const [bed, setBed] = React.useState([]);
+
+    const handleClose = () => setOpen(false);
+
+    const handleOpenModal = (bed) => {
+        setOpen(true);
+        setBed(bed);
+    }
+
 
     useEffect(() => {
         RoomService.getAllRoomsForDepartment(departmentId).then(res => {
@@ -35,9 +49,20 @@ const AddPatient = ({departmentId}) => {
     
       const classes = useStyles();
 
+      const style = {
+        position: 'absolute',
+        top: '10%',
+        left: '31%',
+        width: "40%",
+        bgcolor: 'background.paper',
+        outline: 'none',
+        p: 4,
+        borderRadius: "5px 5px 0 0",
+        };
+
       const handleSelect = (event) => {
             setRoomId(event.target.value);
-            BedService.getAllBedsForRoom(roomId).then(res => {
+            BedService.getEmptyBedsForRoom(event.target.value).then(res => {
                 setBeds(res.data);
             });
       }
@@ -51,7 +76,17 @@ const AddPatient = ({departmentId}) => {
     return (
         <>
         <div className="center-container">
-            <img src={BedImage} />
+        <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                >
+                <Box sx={style}>
+                    <AddPatientModal bed = {bed} />
+                </Box>
+            </Modal>
+            <img src={Patient} />
             <div className="filter-container">
                 <FormControl variant="outlined" sx={{ minWidth: "100%" }}>
                     <TextField
@@ -75,7 +110,7 @@ const AddPatient = ({departmentId}) => {
             </div>
                 <div className="d-flex">
                 {beds.map(bed => (
-                    <div className="d-flex collumn aling-center">
+                    <div className="d-flex collumn aling-center" onClick={() => handleOpenModal(bed)}>
                     <img src={BedImage} />
                     <p>{bed.id}</p>
                     </div>

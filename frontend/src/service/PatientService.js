@@ -12,8 +12,11 @@ class PatientService {
   };
 
   getAllForDept(id) {
+      console.log(id);
     return axios.get(`${PATIENT_API_URL}/patients/${id}`, {headers: AuthHeader()});
   }
+
+ 
 
 }
 

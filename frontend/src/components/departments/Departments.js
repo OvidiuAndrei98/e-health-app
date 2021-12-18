@@ -35,7 +35,6 @@ useEffect(() => {
     });
 } , [roomId]);
 
-console.log(departments);
 
 const handleDepartments = (event) => {
     if(event.target.value != "undefined") {
@@ -48,11 +47,16 @@ const handleDepartments = (event) => {
             DoctorService.getAllDoctorsForDept(event.target.value).then(res => {
                 setSearchDoctor(res.data);
             });
+            PatientService.getAllForDept(event.target.value).then(res => {
+                console.log(res.data);
+                setSearchPatient(res.data);
+            });
         });
     }
     setRooms([]);
     }
 
+    console.log(searchPatient);
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -143,7 +147,7 @@ const useStyles = makeStyles((theme) => ({
                         </div>
                         <div className="result-container">
                         {searchDoctor.map(doctor => (
-                            <div className="doctor-card" key={doctor.id}onClick={() => patientsForDoc(doctor.id)} >
+                            <div className="doctor-card" key={doctor.id} onClick={() => patientsForDoc(doctor.id)}>
                                 <p>{doctor.name}</p>
                             </div>
                         ))}

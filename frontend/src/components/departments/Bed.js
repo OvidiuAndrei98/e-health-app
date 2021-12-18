@@ -50,11 +50,6 @@ const Bed = ({bed}) => {
     
       const classes = useStyles();
 
-     const patiens = [
-         {label: "Ovidiu Andrei Penica"},
-         {label: "robert"},
-     ]
-
     return (
         <div className="bed" onClick={handleOpenModal}>
             <img src={BedImage} alt="bed" />
