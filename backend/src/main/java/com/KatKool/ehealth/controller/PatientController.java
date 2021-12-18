@@ -35,6 +35,7 @@ public class PatientController {
 
     @GetMapping("/patients/{docId}")
     public ResponseEntity<List<Patient>> getPatientsForDept(@PathVariable Long docId) {
+        System.out.println(docId);
         return ResponseEntity.ok(patientService.getAllForDept(docId));
     }
 }

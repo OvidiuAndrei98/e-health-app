@@ -1,4 +1,4 @@
-package com.KatKool.ehealth.dataInitializer;
+package com.KatKool.ehealth.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
